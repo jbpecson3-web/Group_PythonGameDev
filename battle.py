@@ -80,7 +80,7 @@ def battleloop(player:dict):
             textstuff.rest(monster['name'])
             monster['tired'] = False
         else:
-           monster, player = monsters_intents.monster_state(monster, player, pattern)
+            monster, player = monsters_intents.monster_state(monster, player, pattern)
 
         #r u ded?
         if player["hp"] <= 0:
