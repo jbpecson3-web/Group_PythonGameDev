@@ -1,13 +1,18 @@
 import attack_system, random, monsters_intents, textstuff
+import inventory_system
 from monsters import spawn_monster
 
-menu = ["1. Attack", "2. Defend", "3. Skill"]
+menu = ["1. Attack", "2. Defend", "3. Skill", "4. Inventory"]
 
 def display_menu():
     for menu_item in menu:
         print(menu_item)
 
-def battleloop(player_name, player_hp, player_atk, player_def):
+def battleloop(player):
+    player_name = player["name"]
+    player_hp = player["hp"]
+    player_atk = player["atk"]
+    player_def = player["def"]
     extra = 0
     tired = False
     pattern = 0
@@ -16,13 +21,15 @@ def battleloop(player_name, player_hp, player_atk, player_def):
     textstuff.spawn(player_name, monst_name)
 
     while True:
+        viewed_inventory = False
         #CHECKER
         if tired: #if the monster is tired
             textstuff.tired(monst_name) #skips everything
             pattern = 0
         else:
-            pattern = random.randrange(1, 3) #pick a num 1-3, never plays if tired
-            monsters_intents.patpat(monst_name, pattern, monst_atk) #this monster intent
+            if pattern != 99: # 99 means viewed inventory
+                pattern = random.randrange(1, 3) #pick a num 1-3, never plays if tired
+                monsters_intents.patpat(monst_name, pattern, monst_atk) #this monster intent
         
         #DECISION
         display_menu()
@@ -45,6 +52,10 @@ def battleloop(player_name, player_hp, player_atk, player_def):
             pass
         elif action == 3:
             pass
+        elif action == 4:
+            inventory_system.display_inventory(player)
+            pattern = 99
+            continue
         else:
             print("invalid")
             pass
