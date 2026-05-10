@@ -1,4 +1,5 @@
 import battle, class_system, textstuff
+import navigation
 
 #REQUIREMENTS
 #1. dungeon game x
@@ -46,11 +47,12 @@ if __name__ == "__main__":
     # print(f"Welcome to the die, {player['name']}!")
     # input(">")
 
+    #room navigation
+    room = 0
 # #10
     while player["hp"] > 0: #will this fix monster appear?
         #needs here:
         #random int does either battle room, treasure room, hallway (50% to do something), and boss room (only applicable after 10 rooms)
-
+        room = navigation.navigation_system(player, room)
         player["hp"] = battle.battleloop(player)
-
     textstuff.ded(player["name"])
