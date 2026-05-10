@@ -27,7 +27,7 @@ player = { #3
     "cls" : "THIS SHOULDN'T APPEAR",
     "inventory" : {
         "Health Potion": 2,
-        "Shield": 1,    
+        "Shield": 1,
         "Sword": 1
         }
 }
